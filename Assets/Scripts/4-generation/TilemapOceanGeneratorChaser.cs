@@ -83,11 +83,10 @@ public class TilemapOceanGeneratorChaser : MonoBehaviour
         int enemy1pos = rnd.Next(1, gridSize - 1);
         int enemy2pos = rnd.Next(1, gridSize - 1);
   
-        fish.transform.position = new Vector3(1, 1, 0);
-        Door.transform.position = new Vector3(gridSize - 1, gridSize - 1, 0);
-        enemy1.transform.position = new Vector3(enemy1pos, enemy1pos, 0);
-        enemy2.transform.position = new Vector3(enemy2pos, enemy2pos, 0);
-        Debug.Log(gridSize + " gridsize on TILEMAP2 ");
+        fish.transform.position = new Vector3(1, 1, 0); //set fish to left bottom corner
+        Door.transform.position = new Vector3(gridSize - 1, gridSize - 1, 0); //set door to right top corner
+        enemy1.transform.position = new Vector3(enemy1pos, enemy1pos, 0); //set shark to random spot
+        enemy2.transform.position = new Vector3(enemy2pos, enemy2pos, 0); //set shark to random spot
         for (int y = 0; y < gridSize; y++)
         {
            

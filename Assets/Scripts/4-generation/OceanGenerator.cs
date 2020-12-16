@@ -20,6 +20,7 @@ public class OceanGenerator
     //The higher the fill percentage, the smaller the caves.
     protected float randomFillPercent;
     protected float randomSharkPercent;
+    protected float randomBlueReefPercent;
     //The height and length of the grid
     protected int gridSize;
 
@@ -35,6 +36,7 @@ public class OceanGenerator
         this.randomFillPercent = randomFillPercent;
         this.gridSize = gridSize;
         this.randomSharkPercent = randomFillPercent * 0.007f;
+        this.randomBlueReefPercent = randomFillPercent * 0.2f;
         this.bufferOld = new int[gridSize, gridSize];
         this.bufferNew = new int[gridSize, gridSize];
 
@@ -66,17 +68,17 @@ public class OceanGenerator
                     bufferOld[x, y] = 1;
                 }
 
-                else if (r < randomSharkPercent)
+                else if (r < randomSharkPercent) // if the shark percent isnt finished -> put more sharks
                 {
                     bufferOld[x, y] = 2;
 
                 }
                 //Random sea and reefs
-                else if(r < randomFillPercent)
+                else if(r < randomFillPercent) // if the reef percent isnt finished -> put more reef
                 {
                     bufferOld[x, y] = 1;
                 }
-                else if (x % 11 == 0 && y % 11 == 0 || x % 7 == 0 && y % 7 == 0)
+                else if (r < randomBlueReefPercent) // if the bluereef percent isnt finished -> put more bluereef
                 {
                     bufferOld[x, y] = 3;
                     bufferOld[x + 1, y + 1] = 3;
@@ -85,7 +87,6 @@ public class OceanGenerator
                     bufferOld[x + 1, y - 1] = 3;
                 }
                 else bufferOld[x, y] = 0;
-                //bufferOld[x, y] = r < randomFillPercent ? 1 : 0;
             }
         }
     }
@@ -101,7 +102,7 @@ public class OceanGenerator
         {
             for (int y = 0; y < gridSize; y++)
             {
-                //Border is always wall
+                //Border is always reef
                 if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
                     bufferNew[x, y] = 1;

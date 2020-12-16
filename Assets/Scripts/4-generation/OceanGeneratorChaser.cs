@@ -92,7 +92,7 @@ public class OceanGeneratorChaser
         {
             for (int y = 0; y < gridSize; y++)
             {
-                //Border is always wall
+                //Border is always reef wall
                 if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1)
                 {
                     int wall = rnd.Next(1, 10);
@@ -105,10 +105,10 @@ public class OceanGeneratorChaser
                     continue;
                 }
 
-                //Uses bufferOld to get the wall count
+                //Uses bufferOld to get the reef wall count
                 int surroundingWalls = GetSurroundingReefCount(x, y);
 
-                //Use some smoothing rules to generate caves
+                //Use some smoothing rules to generate reefs
                 if (surroundingWalls > 4)
                 {
                     bufferNew[x, y] = 1;
@@ -144,7 +144,7 @@ public class OceanGeneratorChaser
                     continue;
                 }
 
-                //This neighbor is a wall
+                //This neighbor is a reef wall
                 if (bufferOld[neighborX, neighborY] == 1)
                 {
                     wallCounter += 1;

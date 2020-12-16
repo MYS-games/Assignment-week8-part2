@@ -26,21 +26,18 @@ public class KeyboardMoverByTile: KeyboardMover {
         Vector3 newPosition = NewPosition();
         Vector3 newPositionAfterX = NewPositionAfterX();
         timeBetweenSteps = 1 / speed;
-        if (newPositionAfterX != min)
+        if (newPositionAfterX != min) //if we did press X:
         {
             TileBase tileOnNewPosition = TileOnPosition(newPositionAfterX);
-            if (tileOnNewPosition.Equals(mountains))
+            if (tileOnNewPosition.Equals(mountains)) // pressed X at a mountain tile :
             {
-                //tilemap.SetTile(tilemap.WorldToCell(newPositionAfterX), diamond);
                 StartCoroutine(Example(newPositionAfterX));
-                //tilemap.SetTile(tilemap.WorldToCell(newPositionAfterX), grass);
-                //transform.position = newPositionAfterX;
+              
             }
-            else if (tileOnNewPosition.Equals(grass))
+            else if (tileOnNewPosition.Equals(grass)) //pressed X at a grass tile:
             {
                 transform.position = newPositionAfterX;
             }
-            //timeBetweenSteps = 1 / speed; WaitForSeconds(timeBetweenSteps);
 
         }
         else
@@ -57,12 +54,13 @@ public class KeyboardMoverByTile: KeyboardMover {
         }
     }
 
-    IEnumerator Example(Vector3 v)
+    IEnumerator Example(Vector3 v) //this function replaces the mountain tile for a diamond tile and grass tile 
+                                    //and waits some time between (to slow the player while carving)
     {
-        tilemap.SetTile(tilemap.WorldToCell(v), diamond);
-        yield return new WaitForSecondsRealtime(timeBetweenSteps);
-        tilemap.SetTile(tilemap.WorldToCell(v), grass);
-        transform.position = v;
+        tilemap.SetTile(tilemap.WorldToCell(v), diamond); //replace to diamond
+        yield return new WaitForSecondsRealtime(timeBetweenSteps); //slow the player while carving
+        tilemap.SetTile(tilemap.WorldToCell(v), grass); //replace to grass after some time
+        transform.position = v; 
 
     }
 

@@ -29,7 +29,7 @@ public class KeyboardMover : MonoBehaviour
             return transform.position;
         }
     }
-    protected Vector3 NewPositionAfterX()
+    protected Vector3 NewPositionAfterX() ///checks if we pressed the X key for carving 
     {
         if (Input.GetKey(KeyCode.X))
         {
